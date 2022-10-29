@@ -20,5 +20,15 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@popperjs/core": "^2.11.6",
+        "bootstrap-icons": "^1.9.1",
+        "easing-js": "^1.1.2",
+        "isotope-layout": "^3.0.6",
+        "jquery": "^3.6.1",
+        "jquery-bridget": "^3.0.1",
+        "waypoints": "^4.0.1",
+        "wow.js": "^1.2.2"
     }
 }
