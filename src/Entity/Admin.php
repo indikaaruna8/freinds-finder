@@ -4,12 +4,15 @@ namespace In\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdminRepository::class)
+ *  @ORM\HasLifecycleCallbacks()
  */
 class Admin
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,6 +26,8 @@ class Admin
     private $uuid;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Email
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
@@ -33,14 +38,15 @@ class Admin
     private $username;
 
     /**
+     * Display Name
      * @ORM\Column(type="string", length=100)
      */
-    private $firstName;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $lastName;
+    private $password;
 
     /**
      * @ORM\Column(type="datetime_immutable")
@@ -51,6 +57,20 @@ class Admin
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
+
+    /**
+     * Each admin has a role
+     * @ORM\ManyToOne(targetEntity="AdminRole", inversedBy="admins")
+     * @ORM\JoinColumn(name="admin_role_id", referencedColumnName="id")
+     * @var AdminRole
+     */
+    private $adminRole;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AdminProfile")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     */
+    private AdminProfile $profile;
 
     public function getId(): ?int
     {
@@ -93,26 +113,14 @@ class Admin
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getName(): ?string
     {
-        return $this->firstName;
+        return $this->name;
     }
 
-    public function setFirstName(string $firstName): self
+    public function setName(string $name): self
     {
-        $this->firstName = $firstName;
-
-        return $this;
-    }
-
-    public function getLastName(): ?string
-    {
-        return $this->lastName;
-    }
-
-    public function setLastName(string $lastName): self
-    {
-        $this->lastName = $lastName;
+        $this->name = $name;
 
         return $this;
     }
@@ -129,6 +137,18 @@ class Admin
         return $this;
     }
 
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
@@ -140,4 +160,40 @@ class Admin
 
         return $this;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+        $this->uuid = \Symfony\Component\Uid\Uuid::v4();
+        $this->username = $this->email;
+    }
+
+    public function getAdminRole(): ?AdminRole
+    {
+        return $this->adminRole;
+    }
+
+    public function setAdminRole(?AdminRole $adminRole): self
+    {
+        $this->adminRole = $adminRole;
+
+        return $this;
+    }
+
+    public function getProfile(): ?AdminProfile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?AdminProfile $profile): self
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
 }

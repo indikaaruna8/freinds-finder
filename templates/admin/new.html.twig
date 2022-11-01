@@ -1,0 +1,12 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}New Admin{% endblock %}
+
+{% block body %}
+    <!-- Quote Start -->
+   
+{% form_theme form with ['form/fields.html.twig'] only %} 
+    {{ include('admin/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_index') }}">back to list</a>
+{% endblock %}

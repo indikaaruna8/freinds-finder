@@ -1,0 +1,48 @@
+{% extends 'layout/layout.html.twig' %}
+
+
+{% block title %}Admin index{% endblock %}
+
+{% block body %}    
+    <h1>Admin index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Uuid</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Password</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for admin in admins %}
+            <tr>
+                <td>{{ admin.id }}</td>
+                <td>{{ admin.uuid }}</td>
+                <td>{{ admin.email }}</td>
+                <td>{{ admin.username }}</td>
+                <td>{{ admin.name }}</td>
+                <td>{{ admin.password }}</td>
+                <td>{{ admin.createdAt ? admin.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ admin.updatedAt ? admin.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_show', {'uuid': admin.uuid}) }}">show</a>
+                    <a href="{{ path('app_admin_edit', {'uuid': admin.uuid}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_new') }}">Create new</a>
+{% endblock %}
