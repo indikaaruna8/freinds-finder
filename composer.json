@@ -43,7 +43,8 @@
     "autoload": {
         "psr-4": {
             "In\\": "src/",
-            "In\\Api\\": "srcapi/"
+            "In\\Api\\": "srcapi/",
+            "Lib\\In\\": "srclib/"
         }
     },
     "autoload-dev": {

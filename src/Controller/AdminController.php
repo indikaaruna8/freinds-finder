@@ -8,7 +8,10 @@ use In\Repository\AdminRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Lib\In\ListBundle\Service\Search;
+use Lib\In\ListBundle\Request\JsgridSearchRequest as JSR;
 
 /**
  * @Route("/admin")
@@ -21,9 +24,20 @@ class AdminController extends AbstractController
      */
     public function index(AdminRepository $adminRepository): Response
     {
+       
         return $this->render('admin/index.html.twig', [
             'admins' => $adminRepository->findAll(),
+            'name' =>  Until::test()
         ]);
+    }
+
+    /**
+     * @Route("/data", name="app_admin_data", methods={"GET"})
+     */
+    public function indexData(JSR $jsr, Search $s, AdminRepository $repo): Response
+    {
+        $data = $s->getData($jsr, $repo);
+        return $this->json($data);
     }
 
     /**

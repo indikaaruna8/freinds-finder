@@ -5,6 +5,8 @@ namespace In\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use In\Entity\Admin;
+use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface;
+use Lib\In\ListBundle\Interfaces\QueryBuilderInterface as QBI;
 
 /**
  * @extends ServiceEntityRepository<Admin>
@@ -14,8 +16,9 @@ use In\Entity\Admin;
  * @method Admin[]    findAll()
  * @method Admin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminRepository extends ServiceEntityRepository
+class AdminRepository extends ServiceEntityRepository implements SearchRepositoryInterface
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Admin::class);
@@ -39,6 +42,16 @@ class AdminRepository extends ServiceEntityRepository
         }
     }
 
+    public function search(QBI $filter)
+    {
+         return ['xx', 'xx'];
+    }
+
+    public function seachCount(QBI $filter)
+    {
+          return 8;
+    }
+
 //    /**
 //     * @return Admin[] Returns an array of Admin objects
 //     */
@@ -53,7 +66,6 @@ class AdminRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
-
 //    public function findOneBySomeField($value): ?Admin
 //    {
 //        return $this->createQueryBuilder('a')

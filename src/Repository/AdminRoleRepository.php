@@ -5,6 +5,8 @@ namespace In\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use In\Entity\AdminRole;
+use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface;
+use Lib\In\ListBundle\Interfaces\QueryBuilderInterface as QBI;
 
 /**
  * @extends ServiceEntityRepository<AdminRole>
@@ -14,7 +16,7 @@ use In\Entity\AdminRole;
  * @method AdminRole[]    findAll()
  * @method AdminRole[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminRoleRepository extends ServiceEntityRepository
+class AdminRoleRepository extends ServiceEntityRepository implements SearchRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -37,6 +39,16 @@ class AdminRoleRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function search(QBI $filter)
+    {
+        
+    }
+
+    public function seachCount(QBI $filter)
+    {
+        
     }
 
 //    /**
