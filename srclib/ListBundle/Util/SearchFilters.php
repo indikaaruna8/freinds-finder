@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Lib\In\ListBundle\Util;
 
 /**
@@ -25,55 +24,41 @@ class SearchFilters
      * 
      * @var string
      */
-    private $searchString = "";
+    private ?string $searchString = "dd";
 
     /**
      * 
      * @var int
      */
-    private $pageSize = self::DEFAULT_PAGE_SIZE;
+    private int $pageSize = self::DEFAULT_PAGE_SIZE;
 
     /**
      * 
      * @var int
      */
-    private $page = self::DEFAULT_PAGE;
+    private int $page = self::DEFAULT_PAGE;
+
+    /**
+     * 
+     * @var int|null
+     */
+    private ?int $pageStart = 0;
 
     /**
      * 
      * @var array
      */
-    private $columns = [];
+    private array $columns = [];
 
     /**
      * 
      * @var array
      */
-    private $orderBy = [];
+    private array $orderBy = [];
 
     public function getSearchString(): string
     {
         return $this->searchString;
-    }
-
-    public function getPageSize(): int
-    {
-        return $this->pageSize;
-    }
-
-    public function getPage(): int
-    {
-        return $this->page;
-    }
-
-    public function getColumns(): array
-    {
-        return $this->columns;
-    }
-
-    public function getOrderBy(): array
-    {
-        return $this->orderBy;
     }
 
     public function setSearchString(string $searchString)
@@ -82,10 +67,32 @@ class SearchFilters
         return $this;
     }
 
+    public function getPageStart(): ?int
+    {
+        return $this->pageStart;
+    }
+
+    public function setPageStart(?int $pageStart)
+    {
+        $this->pageStart = $pageStart;
+
+        return $this;
+    }
+
+    public function getPageSize(): int
+    {
+        return $this->pageSize;
+    }
+
     public function setPageSize(int $pageSize)
     {
         $this->pageSize = $pageSize;
         return $this;
+    }
+
+    public function getPage(): int
+    {
+        return $this->page;
     }
 
     public function setPage(int $page)
@@ -95,11 +102,21 @@ class SearchFilters
         return $this;
     }
 
+    public function getColumns(): array
+    {
+        return $this->columns;
+    }
+
     public function setColumns(array $columns)
     {
         $this->columns = $columns;
 
         return $this;
+    }
+
+    public function getOrderBy(): array
+    {
+        return $this->orderBy;
     }
 
     public function setOrderBy(array $orderBy)

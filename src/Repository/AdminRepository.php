@@ -7,6 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use In\Entity\Admin;
 use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface;
 use Lib\In\ListBundle\Interfaces\QueryBuilderInterface as QBI;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Admin>
@@ -42,14 +43,26 @@ class AdminRepository extends ServiceEntityRepository implements SearchRepositor
         }
     }
 
-    public function search(QBI $filter)
+    public function getSearchQuery(): QueryBuilder
     {
-         return ['xx', 'xx'];
+        return $this->createQueryBuilder('a')
+            ->leftJoin("a.adminRole", 'ar');
     }
 
-    public function seachCount(QBI $filter)
+    public function search(QueryBuilder $query)
     {
-          return 8;
+        return $query->select('a')
+            ->getQuery()
+            ->getResult();
+        
+    }
+
+    public function seachCount(QueryBuilder $query)
+    {
+        return $query->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+      
     }
 
 //    /**

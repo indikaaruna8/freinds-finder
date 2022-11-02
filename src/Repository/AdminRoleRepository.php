@@ -16,7 +16,7 @@ use Lib\In\ListBundle\Interfaces\QueryBuilderInterface as QBI;
  * @method AdminRole[]    findAll()
  * @method AdminRole[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AdminRoleRepository extends ServiceEntityRepository implements SearchRepositoryInterface
+class AdminRoleRepository extends ServiceEntityRepository //implements SearchRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -41,15 +41,15 @@ class AdminRoleRepository extends ServiceEntityRepository implements SearchRepos
         }
     }
 
-    public function search(QBI $filter)
-    {
-        
-    }
-
-    public function seachCount(QBI $filter)
-    {
-        
-    }
+//    public function search(QBI $filter)
+//    {
+//        
+//    }
+//
+//    public function seachCount(QBI $filter)
+//    {
+//        
+//    }
 
 //    /**
 //     * @return AdminRole[] Returns an array of AdminRole objects

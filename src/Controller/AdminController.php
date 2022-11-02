@@ -36,8 +36,21 @@ class AdminController extends AbstractController
      */
     public function indexData(JSR $jsr, Search $s, AdminRepository $repo): Response
     {
-        $data = $s->getData($jsr, $repo);
-        return $this->json($data);
+        $fields = [
+            'name' => ['field' => 'a.name', 'search' => true, 'args' => []],
+            'created_date' => ['field' => 'a.createdAt', 'search' => true, 'args' => ['format' => 'd-M-y h:i:s A']]
+        ];
+
+        $paths = [
+            'edit' => ['route_name' => 'app_admin_edit', 'param' => ['uuid' => 'uuid']],
+            'show' => ['route_name' => 'app_admin_show', 'param' => ['uuid' => 'uuid']]
+        ];
+
+        $data = $s->getData($jsr, $repo, $fields , $paths);
+
+        //return new Response('xxx');
+
+        return  $this->json($data);
     }
 
     /**

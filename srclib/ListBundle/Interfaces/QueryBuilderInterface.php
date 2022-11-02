@@ -8,6 +8,8 @@
 namespace Lib\In\ListBundle\Interfaces;
 
 use Lib\In\ListBundle\Util\SearchFilters;
+use Doctrine\ORM\QueryBuilder;
+use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface;
 
 /**
  *
@@ -15,10 +17,11 @@ use Lib\In\ListBundle\Util\SearchFilters;
  */
 interface QueryBuilderInterface
 {
+    public function setFields(array $fields) : self;
+    
+    public function getSearchQuery() : QueryBuilder;
 
-    public function getSearchQuery();
+    public function setSearchfilter(SearchFilters $searchFilter) : self;
 
-    public function getSort();
-
-    public function setScarchFilter(SearchFilters $searchFilter);
+    public function getQuery(SearchRepositoryInterface $sri): QueryBuilder;
 }

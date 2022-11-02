@@ -7,14 +7,17 @@
 
 namespace Lib\In\ListBundle\Interfaces;
 
+use Doctrine\ORM\QueryBuilder;
+
 /**
  *
  * @author indika
  */
 interface SearchRepositoryInterface
 {
+//    public function setSeachQueryBuilder(QueryBuilderInterface $searchQueyrBuilder);
+    
+    public function seachCount(QueryBuilder $filter);
 
-    public function seachCount(QueryBuilderInterface $filter);
-
-    public function search(QueryBuilderInterface $filter);
+    public function search(QueryBuilder $filter);
 }
