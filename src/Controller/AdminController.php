@@ -27,7 +27,6 @@ class AdminController extends AbstractController
        
         return $this->render('admin/index.html.twig', [
             'admins' => $adminRepository->findAll(),
-            'name' =>  Until::test()
         ]);
     }
 
