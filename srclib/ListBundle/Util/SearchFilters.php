@@ -9,49 +9,48 @@ namespace Lib\In\ListBundle\Util;
  */
 class SearchFilters
 {
-
     /**
-     * 
+     *
      */
-    const DEFAULT_PAGE_SIZE = 10;
+    public const DEFAULT_PAGE_SIZE = 10;
 
     /**
-     * 
+     *
      */
-    const DEFAULT_PAGE = 1;
+    public const DEFAULT_PAGE = 1;
 
     /**
-     * 
+     *
      * @var string
      */
-    private ?string $searchString = "dd";
+    private ?string $searchString = "";
 
     /**
-     * 
+     *
      * @var int
      */
     private int $pageSize = self::DEFAULT_PAGE_SIZE;
 
     /**
-     * 
+     *
      * @var int
      */
     private int $page = self::DEFAULT_PAGE;
 
     /**
-     * 
+     *
      * @var int|null
      */
     private ?int $pageStart = 0;
 
     /**
-     * 
+     *
      * @var array
      */
     private array $columns = [];
 
     /**
-     * 
+     *
      * @var array
      */
     private array $orderBy = [];
@@ -125,5 +124,4 @@ class SearchFilters
 
         return $this;
     }
-
 }

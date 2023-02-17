@@ -17,9 +17,8 @@ use In\Entity\Admin;
  */
 class AdminJson extends JsonEntity
 {
-
     /**
-     * 
+     *
      * @var Admin
      */
     protected $entity;
@@ -28,5 +27,4 @@ class AdminJson extends JsonEntity
     {
         return $this->entity->getCreatedAt()->format($format);
     }
-
 }

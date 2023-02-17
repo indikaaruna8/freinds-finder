@@ -8,31 +8,21 @@ use In\Repository\AdminRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Lib\In\ListBundle\Service\Search;
 use Lib\In\ListBundle\Request\JsgridSearchRequest as JSR;
 
-/**
- * @Route("/admin")
- */
 class AdminController extends AbstractController
 {
-
-    /**
-     * @Route("/", name="app_admin_index", methods={"GET"})
-     */
+    #[Route('/admin', name: "app_admin_index", methods: ["GET"])]
     public function index(AdminRepository $adminRepository): Response
     {
-       
         return $this->render('admin/index.html.twig', [
             'admins' => $adminRepository->findAll(),
         ]);
     }
 
-    /**
-     * @Route("/data", name="app_admin_data", methods={"GET"})
-     */
+    #[Route("/admin/data", name: "app_admin_data", methods:["GET"])]
     public function indexData(JSR $jsr, Search $s, AdminRepository $repo): Response
     {
         $fields = [
@@ -45,16 +35,14 @@ class AdminController extends AbstractController
             'show' => ['route_name' => 'app_admin_show', 'param' => ['uuid' => 'uuid']]
         ];
 
-        $data = $s->getData($jsr, $repo, $fields , $paths);
+        $data = $s->getData($jsr, $repo, $fields, $paths);
 
         //return new Response('xxx');
 
         return  $this->json($data);
     }
 
-    /**
-     * @Route("/new", name="app_admin_new", methods={"GET", "POST"})
-     */
+    #[Route("/admin/new", name:"app_admin_new", methods:["GET", "POST"])]
     public function new(Request $request, AdminRepository $adminRepository): Response
     {
         $admin = new Admin();
@@ -73,9 +61,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{uuid}", name="app_admin_show", methods={"GET"})
-     */
+    #[Route("admin/{uuid}", name: "app_admin_show", methods: ["GET"])]
     public function show(Admin $admin): Response
     {
         return $this->render('admin/show.html.twig', [
@@ -83,9 +69,8 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{uuid}/edit", name="app_admin_edit", methods={"GET", "POST"})
-     */
+
+    #[Route("admin/{uuid}/edit", name: "app_admin_edit", methods: ["GET", "POST"])]
     public function edit(Request $request, Admin $admin, AdminRepository $adminRepository): Response
     {
         $form = $this->createForm(AdminType::class, $admin);
@@ -103,9 +88,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{uuid}", name="app_admin_delete", methods={"POST"})
-     */
+    #[Route("admin/{uuid}", name: "app_admin_delete", methods: ["POST"])]
     public function delete(Request $request, Admin $admin, AdminRepository $adminRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$admin->getId(), $request->request->get('_token'))) {

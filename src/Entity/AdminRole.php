@@ -7,13 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminRoleRepository;
 
-
 /**
  * @ORM\Entity(repositoryClass=AdminRoleRepository::class)
  */
 class AdminRole
 {
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -184,5 +182,4 @@ class AdminRole
 
         return $this;
     }
-
 }

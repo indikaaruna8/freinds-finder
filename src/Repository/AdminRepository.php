@@ -19,7 +19,6 @@ use Doctrine\ORM\QueryBuilder;
  */
 class AdminRepository extends ServiceEntityRepository implements SearchRepositoryInterface
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Admin::class);
@@ -54,7 +53,6 @@ class AdminRepository extends ServiceEntityRepository implements SearchRepositor
         return $query->select('a')
             ->getQuery()
             ->getResult();
-        
     }
 
     public function seachCount(QueryBuilder $query)
@@ -62,7 +60,6 @@ class AdminRepository extends ServiceEntityRepository implements SearchRepositor
         return $query->select('count(a.id)')
             ->getQuery()
             ->getSingleScalarResult();
-      
     }
 
 //    /**

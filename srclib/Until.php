@@ -1,10 +1,11 @@
 <?php
+
 namespace Lib\In;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPClass.php to edit this template
  */
-
 
 /**
  * Description of Until
@@ -13,9 +14,8 @@ namespace Lib\In;
  */
 class Until
 {
-    public static  function test()
+    public static function test()
     {
         return "xx";
-
     }
 }
