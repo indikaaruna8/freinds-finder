@@ -10,7 +10,6 @@ use In\Repository\AdminProfileRepository;
  */
 class AdminProfile
 {
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -124,5 +123,4 @@ class AdminProfile
 
         return $this;
     }
-
 }

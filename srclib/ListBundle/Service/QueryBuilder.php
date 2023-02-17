@@ -19,27 +19,26 @@ use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface as SRI;
  */
 class QueryBuilder implements QueryBuilderInterface
 {
-
     /**
-     * 
+     *
      * @var SearchFilters
      */
     private SearchFilters $scarchFilter;
 
     /**
-     * 
+     *
      * @var array
      */
     private array $fields = [];
 
     /**
-     * 
+     *
      * @var array
      */
     private $parameters = [];
 
     /**
-     * 
+     *
      * @var DoctrineQueryBuilder
      */
     private $query;
@@ -59,7 +58,7 @@ class QueryBuilder implements QueryBuilderInterface
     }
 
     /**
-     * 
+     *
      * @return DoctrineQueryBuilder
      */
     public function getSearchQuery(): DoctrineQueryBuilder
@@ -84,7 +83,7 @@ class QueryBuilder implements QueryBuilderInterface
         return $this->query;
     }
 
-    protected function getFilterQuery() : string
+    protected function getFilterQuery(): string
     {
         $searchValue = $this->scarchFilter->getSearchString();
         if (empty($searchValue)) {
@@ -111,11 +110,10 @@ class QueryBuilder implements QueryBuilderInterface
         return '(' . implode(') OR (', $query) . ')';
     }
 
-    private function getSearchField() : array 
+    private function getSearchField(): array
     {
         return array_filter($this->fields, function ($field) {
             return isset($field['search']) && $field['search'] === true;
         });
     }
-
 }

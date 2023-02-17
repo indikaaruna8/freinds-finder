@@ -17,11 +17,11 @@ use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface;
  */
 interface QueryBuilderInterface
 {
-    public function setFields(array $fields) : self;
-    
-    public function getSearchQuery() : QueryBuilder;
+    public function setFields(array $fields): self;
 
-    public function setSearchfilter(SearchFilters $searchFilter) : self;
+    public function getSearchQuery(): QueryBuilder;
+
+    public function setSearchfilter(SearchFilters $searchFilter): self;
 
     public function getQuery(SearchRepositoryInterface $sri): QueryBuilder;
 }

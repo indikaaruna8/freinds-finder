@@ -43,12 +43,12 @@ class AdminRoleRepository extends ServiceEntityRepository //implements SearchRep
 
 //    public function search(QBI $filter)
 //    {
-//        
+//
 //    }
 //
 //    public function seachCount(QBI $filter)
 //    {
-//        
+//
 //    }
 
 //    /**

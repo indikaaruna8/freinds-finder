@@ -17,12 +17,10 @@ use Lib\In\ListBundle\Util\SearchFilters;
  */
 class JsgridSearchRequest implements SearchRequesInterface
 {
-
     public function getFilters(): SearchFilters
     {
         $filter = new SearchFilters();
 
         return $filter;
     }
-
 }

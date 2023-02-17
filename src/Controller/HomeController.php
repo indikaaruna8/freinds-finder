@@ -8,10 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-
-    /**
-     * @Route("/", name="app_home", defaults={"__key": 1})
-     */
+    #[Route('/', name: 'app_home', defaults: ['__key' => 1,])]
     public function index(): Response
     {
         $data = [
@@ -22,9 +19,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', $data);
     }
 
-    /**
-     * @Route("/about", name="app_about", defaults={"__key": 1})
-     */
+    #[Route('/home/about', name: 'app_about', defaults: ['__key' => 1,], requirements: ['__key' => '\d+'])]
     public function about(): Response
     {
         $data = [
@@ -35,9 +30,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', $data);
     }
 
-    /**
-     * @Route("/services", name="app_services", defaults={"__key": 1})
-     */
+    #[Route('/services', name: 'app_services', defaults: ['__key' => 1,], requirements: ['__key' => '1'])]
     public function services(): Response
     {
         $data = [
@@ -48,9 +41,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', $data);
     }
 
-    /**
-     * @Route("/services", name="app_projects", defaults={"__key": 1})
-     */
+    #[Route('/project', name: 'app_projects', defaults: ['__key' => 1,], requirements: ['__key' => '\d+'])]
     public function projects(): Response
     {
         $data = [
@@ -61,9 +52,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', $data);
     }
 
-    /**
-     * @Route("/contact", name="app_contact", defaults={"__key": 1})
-     */
+    #[Route('/contact', name: 'app_contact', defaults: ['__key' => 1,], requirements: ['__key' => '\d+']) ]
     public function contact(): Response
     {
         $data = [
@@ -73,5 +62,4 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', $data);
     }
-
 }

@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class AdminType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -36,5 +35,4 @@ class AdminType extends AbstractType
             'data_class' => Admin::class,
         ]);
     }
-
 }

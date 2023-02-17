@@ -14,7 +14,6 @@ namespace Lib\In\ListBundle\Util;
  */
 class JsonEntity
 {
-
     protected $entity;
 
     public function __construct($entity)
@@ -35,5 +34,4 @@ class JsonEntity
 
         return false;
     }
-
 }

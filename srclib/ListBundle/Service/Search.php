@@ -5,7 +5,7 @@ namespace Lib\In\ListBundle\Service;
 use Lib\In\ListBundle\Interfaces\SearchRequesInterface as SREQI;
 use Lib\In\ListBundle\Interfaces\QueryBuilderInterface as QBI;
 use Lib\In\ListBundle\Interfaces\SearchRepositoryInterface as SRI;
-use \ReflectionClass;
+use ReflectionClass;
 use Lib\In\ListBundle\Util\JsonEntity;
 use Symfony\Component\Routing\RouterInterface as RI;
 
@@ -16,15 +16,14 @@ use Symfony\Component\Routing\RouterInterface as RI;
  */
 class Search
 {
-
     /**
-     * 
+     *
      * @var QBI QueryBuilderInterface
      */
     private QBI $qbi;
 
     /**
-     * 
+     *
      * @var RouterInterface
      */
     private RI $router;
@@ -35,7 +34,7 @@ class Search
         $this->router = $ri;
     }
 
-    //put your code here    
+    //put your code here
     public function getData(SREQI $req, SRI $repository, array $fields = [], array $paths = []): array
     {
         $this->qbi->setSearchfilter($req->getFilters())
@@ -120,13 +119,12 @@ class Search
         }
 
         $cname = str_replace("\\Entity\\", "\\Json\\", $namespace) . "Json";
-       
+
 
         if (!class_exists($cname)) {
-            throw new Exception( $cname .  " is not exist.") ;
+            throw new Exception($cname .  " is not exist.") ;
         }
 
         return $cname;
     }
-
 }

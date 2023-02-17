@@ -16,7 +16,7 @@ use Doctrine\ORM\QueryBuilder;
 interface SearchRepositoryInterface
 {
 //    public function setSeachQueryBuilder(QueryBuilderInterface $searchQueyrBuilder);
-    
+
     public function seachCount(QueryBuilder $filter);
 
     public function search(QueryBuilder $filter);

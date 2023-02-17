@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Admin
 {
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -195,5 +194,4 @@ class Admin
 
         return $this;
     }
-
 }
