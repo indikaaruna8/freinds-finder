@@ -1,5 +1,8 @@
 # Symfony Application Demo
-
+The idea of this application is, - Demonstrate how to integrate template with symfony application
+- Relational database implement with doctrine orm 
+- Dimostratin list pages and pagination 
+- User login and role base authentication 
 ## Technologies
 
 Technologies :
