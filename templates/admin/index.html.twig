@@ -14,8 +14,6 @@
                             <table class="table" id="admintable">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Uuid</th>
                                         <th>Email</th>
                                         <th>Username</th>
                                         <th>Name</th>
@@ -28,8 +26,6 @@
                                 <tbody>
                                     {% for admin in admins %}
                                         <tr>
-                                            <td>{{ admin.id }}</td>
-                                            <td>{{ admin.uuid }}</td>
                                             <td>{{ admin.email }}</td>
                                             <td>{{ admin.username }}</td>
                                             <td>{{ admin.name }}</td>

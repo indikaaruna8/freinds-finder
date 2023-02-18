@@ -7,33 +7,25 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminPermissionRepository;
 
-/**
- * @ORM\Entity(repositoryClass=AdminPermissionRepository::class)
- */
+#[ORM\Entity(repositoryClass: AdminPermissionRepository::class)]
 class AdminPermission
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $role;
+    #[ORM\Column(type: 'string', length: 20)]
+    private ?string $role;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $name;
+    #[ORM\Column(type: 'string', length: 100)]
+    private ?string $name;
 
     /**
      * Many AdminPermission have one AdminRole.
-     * @ORM\ManyToMany(targetEntity="AdminRole", mappedBy="adminPermissions")
      * @var AdminRoles
      */
+    #[ORM\ManyToMany(targetEntity: 'AdminRole', mappedBy: 'adminPermissions')]
     private $adminRoles;
 
     public function __construct()

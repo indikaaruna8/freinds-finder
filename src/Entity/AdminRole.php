@@ -6,56 +6,43 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminRoleRepository;
+use Symfony\Component\Uid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass=AdminRoleRepository::class)
- */
+#[ORM\Entity(repositoryClass: AdminRoleRepository::class)]
 class AdminRole
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="uuid")
-     */
-    private $uuid;
+    #[ORM\Column(type: 'uuid')]
+    private ?Uuid $uuid;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
+    #[ORM\Column(type: 'string', length: 100)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $description;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
+    #[ORM\Column(type: 'datetime_immutable')]
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
+    #[ORM\Column(type: 'datetime_immutable')]
     private $updatedAt;
 
     /**
      * One AdmiRole has many permissions. This is the inverse side.
-     * @ORM\ManyToMany(targetEntity="AdminPermission", inversedBy="adminRoles")
-     * @ORM\JoinTable(name="admin_role_permission")
      *
      */
+    #[ORM\JoinTable(name: 'admin_role_permission')]
+    #[ORM\ManyToMany(targetEntity: 'AdminPermission', inversedBy: 'adminRoles')]
     private $adminPermissions;
 
     /**
-     * @ORM\OneToMany(targetEntity="Admin", mappedBy="adminRole")
      * @var ArrayCollection
      */
+    #[ORM\OneToMany(targetEntity: 'Admin', mappedBy: 'adminRole')]
     private $admins;
 
     public function __construct()
@@ -69,12 +56,12 @@ class AdminRole
         return $this->id;
     }
 
-    public function getUuid()
+    public function getUuid(): ?Uuid
     {
         return $this->uuid;
     }
 
-    public function setUuid($uuid): self
+    public function setUuid(?Uuid $uuid): self
     {
         $this->uuid = $uuid;
 

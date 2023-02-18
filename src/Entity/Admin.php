@@ -5,70 +5,53 @@ namespace In\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Uid\Uuid;
 
-/**
- * @ORM\Entity(repositoryClass=AdminRepository::class)
- *  @ORM\HasLifecycleCallbacks()
- */
+#[ORM\Entity(repositoryClass: AdminRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Admin
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="uuid", unique=true)
-     */
-    private $uuid;
+    #[ORM\Column(type: 'uuid', unique: true)]
+    private ?Uuid $uuid;
 
-    /**
-     * @Assert\NotBlank
-     * @Assert\Email
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $email;
+    #[Assert\NotBlank]
+    #[Assert\Email]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private ?string $email;
 
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $username;
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private ?string $username;
 
     /**
      * Display Name
-     * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    #[ORM\Column(type: 'string', length: 100)]
+    private ?string $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $password;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $createdAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $createdAt;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $updatedAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $updatedAt;
 
     /**
      * Each admin has a role
-     * @ORM\ManyToOne(targetEntity="AdminRole", inversedBy="admins")
-     * @ORM\JoinColumn(name="admin_role_id", referencedColumnName="id")
      * @var AdminRole
      */
+    #[ORM\ManyToOne(targetEntity: 'AdminRole', inversedBy: 'admins')]
+    #[ORM\JoinColumn(name: 'admin_role_id', referencedColumnName: 'id')]
     private $adminRole;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="AdminProfile")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
-     */
+    #[ORM\ManyToOne(targetEntity: 'AdminProfile')]
+    #[ORM\JoinColumn(name: 'address_id', referencedColumnName: 'id')]
     private AdminProfile $profile;
 
     public function getId(): ?int
@@ -76,12 +59,12 @@ class Admin
         return $this->id;
     }
 
-    public function getUuid()
+    public function getUuid(): ?Uuid
     {
         return $this->uuid;
     }
 
-    public function setUuid($uuid): self
+    public function setUuid(?Uuid $uuid): self
     {
         $this->uuid = $uuid;
 
@@ -160,9 +143,7 @@ class Admin
         return $this;
     }
 
-    /**
-     * @ORM\PrePersist
-     */
+    #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
         $this->createdAt = new \DateTimeImmutable();

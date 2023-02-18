@@ -5,47 +5,31 @@ namespace In\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use In\Repository\AdminProfileRepository;
 
-/**
- * @ORM\Entity(repositoryClass=AdminProfileRepository::class)
- */
+#[ORM\Entity(repositoryClass: AdminProfileRepository::class)]
 class AdminProfile
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private ?int $id;
 
-    /**
-     * @ORM\Column(type="datetime_immutable")
-     */
-    private $birthAt;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?\DateTimeImmutable $birthAt;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $firstName;
+    #[ORM\Column(type: 'string', length: 100)]
+    private ?string $firstName;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $lastName;
+    #[ORM\Column(type: 'string', length: 100)]
+    private ?string $lastName;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    private $familyName;
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private ?string $familyName;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $country;
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $country;
 
-    /**
-     * @ORM\Column(type="string", length=15)
-     */
-    private $mobile;
+    #[ORM\Column(type: 'string', length: 15)]
+    private ?string $mobile;
 
     public function getId(): ?int
     {
